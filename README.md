@@ -17,3 +17,7 @@ How to use:
 
 The opening txt-file you provide (or the one that is here given) must be named in the main file "chessOpeningTrainer.py" and the format is as indicated by the
 example file. The main line is the first line and then the variations come afterwards in new rows.
+
+Note on the graphics:
+
+The squares, the numbers and the GU logo are designed by myself and the pieces are taken from a free stockphoto.
