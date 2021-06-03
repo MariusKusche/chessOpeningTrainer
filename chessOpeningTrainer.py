@@ -11,14 +11,14 @@ def main():
      
     pieceList, screen, sLength = settingUp.setBoard()
     opn = Opening()
-    opn.readMoves("vienna_gambit")
+    opn.readMoves("random_opening")
 
     # define a variable to control the main loop
     running = True
     index = 0
     #dragging = False
 
-    mes = Messages("Vienna Gambit")
+    mes = Messages("Random Opening")
     hei = mes.setUpMessage(screen)
     # hardcoded but the first messages have fixed height
     # which might be a problem for openings with long names
