@@ -1,7 +1,14 @@
 import pygame
-from pieces import Piece
+import pieces
 
 class Board:
+
+    # def __init__(self, width, height):
+    #    self.height = height
+    #    self.width = width
+
+    #sLength = 0
+    #coordLength = 0
 
     def make_board(self, screen):
         woodSquare = pygame.image.load("gfx/white_square.png")
@@ -19,8 +26,15 @@ class Board:
         squareLength = woodSquare.get_rect().size[0]
         coordsLength = coords[0].get_rect().size[0]
 
+        #boardRect = pygame.Surface((pygame.display.get_surface().get_size()[0] - squareLength * 8 + coordsLength,
+                                    #pygame.display.get_surface().get_size()[1]))
+        #boardRect.fill((105, 105, 105))
+        #screen.blit(boardRect, (squareLength * 8 + coordsLength, 0))
+        #pygame.display.flip()
+
         windRect = pygame.Surface((squareLength * 8 + coordsLength, squareLength * 8 + coordsLength))
         windRect.fill((255, 255, 255))
+        #windRect.fill((0, 0, 0))
         screen.blit(windRect, (0, 0))
         pygame.display.flip()
 
@@ -52,7 +66,6 @@ class Board:
         return squareLength
 
     def putAllPieces(self, squareLength, screen):
-
         pieceList = self.loadPieces(squareLength)
 
         for k in range(6):  # len(pieceList)):
@@ -77,7 +90,6 @@ class Board:
                     pygame.display.flip()
 
     def pieceLocation(self, pieList, squareLength):
-
         for k in range(5):
             if k < 4:
                 pieList.sprites()[2 * k].rect.center = (squareLength / 2 + k * squareLength, 7.5 * squareLength)
@@ -88,7 +100,6 @@ class Board:
                 for kk in range(8):
                     pieList.sprites()[2 * k + kk].rect.center = (squareLength / 2 + kk * squareLength, 6.5 * squareLength)
                     pieList.sprites()[2 * k + 16 + kk].rect.center = (squareLength / 2 + kk * squareLength, 1.5 * squareLength)
-
 
     def blitBoard(self, screen, squareLength):
         for x in range(8):
@@ -111,33 +122,31 @@ class Board:
                     pygame.display.flip()
 
     def putPiecesFromPieces(self, screen, squareLength):
-
         pieceList = []
 
-        #pieceList.append(pieces.Piece("wR"))
-        pieceList.append(Piece("wR"))
-        pieceList.append(Piece("wR"))
-        pieceList.append(Piece("wN"))
-        pieceList.append(Piece("wN"))
-        pieceList.append(Piece("wB"))
-        pieceList.append(Piece("wB"))
-        pieceList.append(Piece("wQ"))
-        pieceList.append(Piece("wK"))
+        pieceList.append(pieces.Piece("wR"))
+        pieceList.append(pieces.Piece("wR"))
+        pieceList.append(pieces.Piece("wN"))
+        pieceList.append(pieces.Piece("wN"))
+        pieceList.append(pieces.Piece("wB"))
+        pieceList.append(pieces.Piece("wB"))
+        pieceList.append(pieces.Piece("wQ"))
+        pieceList.append(pieces.Piece("wK"))
 
         for k in range(8):
-            pieceList.append(Piece("wP"))
+            pieceList.append(pieces.Piece("wP"))
 
-        pieceList.append(Piece("bR"))
-        pieceList.append(Piece("bR"))
-        pieceList.append(Piece("bN"))
-        pieceList.append(Piece("bN"))
-        pieceList.append(Piece("bB"))
-        pieceList.append(Piece("bB"))
-        pieceList.append(Piece("bQ"))
-        pieceList.append(Piece("bK"))
+        pieceList.append(pieces.Piece("bR"))
+        pieceList.append(pieces.Piece("bR"))
+        pieceList.append(pieces.Piece("bN"))
+        pieceList.append(pieces.Piece("bN"))
+        pieceList.append(pieces.Piece("bB"))
+        pieceList.append(pieces.Piece("bB"))
+        pieceList.append(pieces.Piece("bQ"))
+        pieceList.append(pieces.Piece("bK"))
 
         for k in range(8):
-            pieceList.append(Piece("bP"))
+            pieceList.append(pieces.Piece("bP"))
 
         all_sprites = pygame.sprite.Group()
         for fig in pieceList:
@@ -148,10 +157,9 @@ class Board:
         all_sprites.draw(screen)
         pygame.display.flip()
 
-        return all_sprites
+        return all_sprites#pieceList
 
     def loadPieces(self, squareSize):
-
         # maybe rename to w1-w6 and do the same for black pieces to be able to loop
         wPawn = pygame.image.load("gfx/white_pawn.png")
         wRook = pygame.image.load("gfx/white_rook.png")

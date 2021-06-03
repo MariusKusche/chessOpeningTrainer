@@ -14,7 +14,6 @@ def detectFigure(piecList, event, screen):
 
 # bugged
 def dragging(piecList, event, screen, pieceIndex):
-
     mx, my = event.pos
     square = detectSquare(mx, my)
 
@@ -28,9 +27,8 @@ def dragging(piecList, event, screen, pieceIndex):
             piece.draw(screen)
     pygame.display.flip()
 
-# this method is very big, there is definitely a way to make it more elegant
-def moveFigure(piecList, event, screen, pieceIndex):
 
+def moveFigure(piecList, event, screen, pieceIndex):
     if not pieceIndex:
         return
 
@@ -39,45 +37,35 @@ def moveFigure(piecList, event, screen, pieceIndex):
 
     # white castles
     if pieceIndex == 7:
-        if square == (6, 7) and math.floor(piecList.sprites()[1].rect.center[0]/110) == 7 and math.floor(piecList.sprites()[1].rect.center[1]/110) == 7:
+        if square == (6, 7):
             moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
             blitSquare(7, 7, screen)
             moveXR = newCenter((5, 7))[0] - piecList.sprites()[1].rect.center[0]
             piecList.sprites()[pieceIndex].updateMove((moveX, 0))
             piecList.sprites()[1].updateMove((moveXR, 0))
             piecList.update()
-        elif square == (2, 7) and math.floor(piecList.sprites()[0].rect.center[0]/110) == 0 and math.floor(piecList.sprites()[0].rect.center[1]/110) == 7:
+        elif square == (2, 7):
             moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
             blitSquare(0, 7, screen)
             moveXR = newCenter((3, 7))[0] - piecList.sprites()[0].rect.center[0]
             piecList.sprites()[pieceIndex].updateMove((moveX, 0))
             piecList.sprites()[0].updateMove((moveXR, 0))
             piecList.update()
-        else:
-            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-            moveY = newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
-            piecList.sprites()[pieceIndex].updateMove((moveX, moveY))
-            piecList.update()
     # black castles
     elif pieceIndex == 23:
-        if square == (6, 0) and math.floor(piecList.sprites()[17].rect.center[0]/110) == 7 and math.floor(piecList.sprites()[17].rect.center[1]/110) == 0:
+        if square == (6, 0):
             moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
             blitSquare(7, 0, screen)
             moveXR = newCenter((5, 0))[0] - piecList.sprites()[17].rect.center[0]
             piecList.sprites()[pieceIndex].updateMove((moveX, 0))
             piecList.sprites()[17].updateMove((moveXR, 0))
             piecList.update()
-        elif square == (2, 0) and math.floor(piecList.sprites()[16].rect.center[0]/110) == 0 and math.floor(piecList.sprites()[16].rect.center[1]/110) == 0:
+        elif square == (2, 0):
             moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
             blitSquare(0, 0, screen)
             moveXR = newCenter((3, 0))[0] - piecList.sprites()[16].rect.center[0]
             piecList.sprites()[pieceIndex].updateMove((moveX, 0))
             piecList.sprites()[16].updateMove((moveXR, 0))
-            piecList.update()
-        else:
-            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-            moveY = newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
-            piecList.sprites()[pieceIndex].updateMove((moveX, moveY))
             piecList.update()
     else:
         moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
@@ -95,10 +83,7 @@ def moveFigure(piecList, event, screen, pieceIndex):
     pygame.display.flip()
 
 
-
-
 def pieceCollision(piecList, event):
-
     mx, my = event.pos
     index = detectFigureIndex(piecList, event)
 
@@ -117,13 +102,14 @@ def pieceCollision(piecList, event):
     else:
         return 0
 
+# this will be changed, because if you take a figure and don't point into its rect there will be two pieces on the
+# same file
 def detectFigureIndex(piecList, event):
     for k in range(len(piecList.sprites())):
         if piecList.sprites()[k].rect.collidepoint(event.pos):
             return k
 
 def blitSquare(x, y, screen):
-
     squareLength = 110
     if x % 2 == 0 and y % 2 == 0:
         woodSquare = pygame.image.load("gfx/white_square.png")
@@ -149,7 +135,6 @@ def newCenter(square):
 
 
 def moveSprite(piece, square):
-
     squareLength = 110
     piece_ = piece
     piece.rect.center = (squareLength / 2 + square[0] * squareLength, (square[1] + 0.5) * squareLength)

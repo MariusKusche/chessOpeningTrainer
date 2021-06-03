@@ -13,6 +13,7 @@ class Piece(pygame.sprite.Sprite):
         self.w = self.rect.w
         self.h = self.rect.h
 
+
     def update(self):
         self.rect.center = (self.rect.center[0] + self.moveX, self.rect.center[1] + self.moveY)
         self.moveX = 0

@@ -3,11 +3,10 @@ from board import Board
 
 
 def setBoard():
-
     # initialize the pygame module
         pygame.init()
         # load and set the logo
-        logo = pygame.image.load("gfx/GU_logo.png")
+        logo = pygame.image.load("gfx/MK_logo.png")
         pygame.display.set_icon(logo)
         pygame.display.set_caption("Schach Schach Schach")
 
@@ -19,19 +18,24 @@ def setBoard():
         screen = pygame.display.set_mode((screen_width, screen_height))
 
         # background
+        #screen.fill((41, 171, 135))
         screen.fill((105, 105, 105))
         pygame.display.flip()
+
+        #wind = Window(1300, 900)
+        #wind.make_screen()
 
         # initialize board and figures
         board1 = Board()
         sqLength = board1.make_board(screen)
         pList = board1.putPiecesFromPieces(screen, sqLength)
+        #board1.putAllPieces(board1, 110, screen)
 
         return pList, screen, sqLength
 
 def relocate(pList, screen):
-
     boardRelocate = Board()
+
     # we first have to resize the pieces otherwise traded pieces will not be blited correctly
     # that is an artifact of drag.pieceCollision, maybe find another way how to handle collisions
     for piece in pList:

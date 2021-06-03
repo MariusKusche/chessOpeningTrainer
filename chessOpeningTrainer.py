@@ -11,21 +11,25 @@ def main():
      
     pieceList, screen, sLength = settingUp.setBoard()
     opn = Opening()
-    toPlay = "bongcloud"
-    opn.readMoves(toPlay)
+    opn.readMoves("vienna_gambit")
 
     # define a variable to control the main loop
     running = True
     index = 0
     #dragging = False
 
-    mes = Messages(toPlay[0].upper()+toPlay[1:])
+    mes = Messages("Vienna Gambit")
     hei = mes.setUpMessage(screen)
+    # hardcoded but the first messages have fixed height
+    # which might be a problem for openings with long names
+    height2 = hei + 34
     wid = 0
 
     xOld = 0
     yOld = 0
-     
+
+    ### On a general note, this needs to be more compact, I thinkt we should introduce another file/class which
+    ### incorporates the actions
     # main loop
     while running:
         # event handling, gets all event from the event queue
@@ -43,8 +47,19 @@ def main():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     index, xOld, yOld = drag.detectFigure(pieceList, event, screen)
-                    #print(opn.moves)
+                    if index == 100:
+                        relocate = opn.isLastMove()
+                        if relocate:
+                            settingUp.relocate(pieceList, screen)
+                            dotIndex = opn.arrangePieces(pieceList, screen)
+                            opn.secondIndex = dotIndex + 1
+                            mes.firstIndex += 1
+                            mes.secondIndex = dotIndex + 1
+                            if opn.firstIndex == 1:
+                                height2 = mes.plsContinue(height2, screen)
+                            wid, height2 = mes.nextLine(height2, opn, screen)
                     #dragging = True
+
 
             # doesnt work at the moment as intended, fix later
 #            elif event.type == pygame.MOUSEMOTION:
@@ -59,12 +74,10 @@ def main():
 
                         if correct:
                             drag.blitSquare(xOld, yOld, screen)
-                            height2 = mes.correct(screen, hei)
+                            mes.correct(screen, hei)
                             drag.moveFigure(pieceList, event, screen, index)
                             wid = mes.displayMove(screen, opn, height2, wid)
-                            relocate = opn.updateIndex()
-                            if relocate:
-                                settingUp.relocate(pieceList, screen)
+                            opn.updateIndex()
                         else:
                             mes.tryAgain(screen, hei)
                         #dragging = False
