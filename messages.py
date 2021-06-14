@@ -7,6 +7,7 @@ grey = (105, 105, 105)
 
 class Messages:
     rows = 0
+    fontsize = 20
 
     def __init__(self, name):
         self.opening = name
@@ -81,13 +82,13 @@ class Messages:
         else:
             k = 0
 
-        font = pygame.font.Font('freesansbold.ttf', 25)
+        font = pygame.font.Font('freesansbold.ttf', Messages.fontsize)
         if (moveIndex % 2 == 0 and lineIndex == 0):
             text = font.render(str(int(moveIndex / 2) + 1) + "." + move + k * " Done!", True, black, grey)
         elif (moveIndex % 2 != 0 and lineIndex > 0):
-            text = font.render(" " + str(int(moveIndex / 2) + 1) + "." + move + k * " Done!", True, black, grey)
+            text = font.render(str(int(moveIndex / 2) + 1) + "." + move + k * " Done!", True, black, grey)
         else:
-            text = font.render(move + k * " Done!", True, black, grey)
+            text = font.render(move + " " + k * " Done!", True, black, grey)
         textRect = text.get_rect()
         if 8 * 110 + 25 + 5 + width + textRect.w < screeni.get_size()[0]:
             textRect.topleft = (8 * 110 + 25 + 5 + width, height + 5 + Messages.rows)
@@ -104,15 +105,15 @@ class Messages:
     # blit the next line/variation which should be played on the screen
     def nextLine(self, height, opning, screeni):
         width = 0
-        font = pygame.font.Font('freesansbold.ttf', 25)
+        font = pygame.font.Font('freesansbold.ttf', Messages.fontsize)
         for i in range(opning.secondIndex - 1):
             move = opning.moves[opning.firstIndex][i]
             if (i % 2 == 0 and i == 0) or (i % 2 == 0 and width == 0):
                 text = font.render(str(int(i / 2) + 1) + "." + move, True, black, grey)
             elif i % 2 == 0 and i != 0:
-                text = font.render(" " + str(int(i / 2) + 1) + "." + move, True, black, grey)
+                text = font.render(str(int(i / 2) + 1) + "." + move, True, black, grey)
             else:
-                text = font.render(move, True, black, grey)
+                text = font.render(move + " ", True, black, grey)
             textRect = text.get_rect()
             # want this to be done prettier
             # Purpose: we start in a new line

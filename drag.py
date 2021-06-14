@@ -36,37 +36,35 @@ def moveFigure(piecList, event, screen, pieceIndex):
     square = detectSquare(mx, my)
 
     # white castles
-    if pieceIndex == 7:
-        if square == (6, 7):
-            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-            blitSquare(7, 7, screen)
-            moveXR = newCenter((5, 7))[0] - piecList.sprites()[1].rect.center[0]
-            piecList.sprites()[pieceIndex].updateMove((moveX, 0))
-            piecList.sprites()[1].updateMove((moveXR, 0))
-            piecList.update()
-        elif square == (2, 7):
-            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-            blitSquare(0, 7, screen)
-            moveXR = newCenter((3, 7))[0] - piecList.sprites()[0].rect.center[0]
-            piecList.sprites()[pieceIndex].updateMove((moveX, 0))
-            piecList.sprites()[0].updateMove((moveXR, 0))
-            piecList.update()
+    if pieceIndex == 7 and square == (6, 7):
+        moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
+        blitSquare(7, 7, screen)
+        moveXR = newCenter((5, 7))[0] - piecList.sprites()[1].rect.center[0]
+        piecList.sprites()[pieceIndex].updateMove((moveX, 0))
+        piecList.sprites()[1].updateMove((moveXR, 0))
+        piecList.update()
+    elif pieceIndex == 7 and square == (2, 7):
+        moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
+        blitSquare(0, 7, screen)
+        moveXR = newCenter((3, 7))[0] - piecList.sprites()[0].rect.center[0]
+        piecList.sprites()[pieceIndex].updateMove((moveX, 0))
+        piecList.sprites()[0].updateMove((moveXR, 0))
+        piecList.update()
     # black castles
-    elif pieceIndex == 23:
-        if square == (6, 0):
-            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-            blitSquare(7, 0, screen)
-            moveXR = newCenter((5, 0))[0] - piecList.sprites()[17].rect.center[0]
-            piecList.sprites()[pieceIndex].updateMove((moveX, 0))
-            piecList.sprites()[17].updateMove((moveXR, 0))
-            piecList.update()
-        elif square == (2, 0):
-            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-            blitSquare(0, 0, screen)
-            moveXR = newCenter((3, 0))[0] - piecList.sprites()[16].rect.center[0]
-            piecList.sprites()[pieceIndex].updateMove((moveX, 0))
-            piecList.sprites()[16].updateMove((moveXR, 0))
-            piecList.update()
+    elif pieceIndex == 23 and square == (6, 0):
+        moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
+        blitSquare(7, 0, screen)
+        moveXR = newCenter((5, 0))[0] - piecList.sprites()[17].rect.center[0]
+        piecList.sprites()[pieceIndex].updateMove((moveX, 0))
+        piecList.sprites()[17].updateMove((moveXR, 0))
+        piecList.update()
+    elif pieceIndex == 23 and square == (2, 0):
+        moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
+        blitSquare(0, 0, screen)
+        moveXR = newCenter((3, 0))[0] - piecList.sprites()[16].rect.center[0]
+        piecList.sprites()[pieceIndex].updateMove((moveX, 0))
+        piecList.sprites()[16].updateMove((moveXR, 0))
+        piecList.update()
     else:
         moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
         moveY = newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
