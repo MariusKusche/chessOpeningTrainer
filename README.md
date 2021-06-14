@@ -24,6 +24,7 @@ e4 e5 both with white.
 Changes in future updates will be: 
 - solve the issue if there are more lines than space on the screen
 - visualise dragging of the pieces
+- correctly implement the case when two Knights of the same colour stand on the same file and are able to move to the same square
 - more...
 
 
