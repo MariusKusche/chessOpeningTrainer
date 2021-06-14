@@ -22,10 +22,8 @@ Some Remarks:
 Also there are some little inconveniences, which are partially declared in the files, e.g. one player can move to times in a row if the conditions are met like 
 e4 e5 both with white. 
 Changes in future updates will be: 
-- moving the king correctly (currently problematic)
 - solve the issue if there are more lines than space on the screen
 - visualise dragging of the pieces
-- solve the above mentioned problem
 - more...
 
 
