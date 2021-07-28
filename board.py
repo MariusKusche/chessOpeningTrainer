@@ -26,15 +26,9 @@ class Board:
         squareLength = woodSquare.get_rect().size[0]
         coordsLength = coords[0].get_rect().size[0]
 
-        #boardRect = pygame.Surface((pygame.display.get_surface().get_size()[0] - squareLength * 8 + coordsLength,
-                                    #pygame.display.get_surface().get_size()[1]))
-        #boardRect.fill((105, 105, 105))
-        #screen.blit(boardRect, (squareLength * 8 + coordsLength, 0))
-        #pygame.display.flip()
-
         windRect = pygame.Surface((squareLength * 8 + coordsLength, squareLength * 8 + coordsLength))
         windRect.fill((255, 255, 255))
-        #windRect.fill((0, 0, 0))
+
         screen.blit(windRect, (0, 0))
         pygame.display.flip()
 
@@ -98,8 +92,8 @@ class Board:
                 pieList.sprites()[2 * k + 16 + 1].rect.center = (7.5 * squareLength - k * squareLength, 0.5 * squareLength)
             else:
                 for kk in range(8):
-                    pieList.sprites()[2 * k + kk].rect.center = (squareLength / 2 + kk * squareLength, 6.5 * squareLength)
-                    pieList.sprites()[2 * k + 16 + kk].rect.center = (squareLength / 2 + kk * squareLength, 1.5 * squareLength)
+                    pieList.sprites()[2 * k + kk].rect.center = (squareLength / 2 + kk * squareLength, 6.5 * squareLength+10)
+                    pieList.sprites()[2 * k + 16 + kk].rect.center = (squareLength / 2 + kk * squareLength, 1.5 * squareLength+10)
 
     def blitBoard(self, screen, squareLength):
         for x in range(8):

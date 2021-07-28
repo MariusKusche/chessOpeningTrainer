@@ -6,7 +6,7 @@ import drag
 
 class Opening:
     # there has to be a better way to get such a dictionary?!
-    abcDict = dict.fromkeys(string.ascii_lowercase, range(26))
+    abcDict = dict.fromkeys(string.ascii_lowercase, 0)
     counterAbc = 0
     for key in abcDict:
         abcDict[key] = counterAbc
@@ -141,7 +141,11 @@ class Opening:
         drag.blitSquare(center[0], center[1], screeni)
 
         moveX = self.newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-        moveY = self.newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
+        # need to have different cases since the pawns now have a different height than all others
+        if ((pieceIndex < 16 and pieceIndex > 7) or (pieceIndex < 32 and pieceIndex > 23)):
+            moveY = self.newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1] + 10
+        else:
+            moveY = self.newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
         piecList.sprites()[pieceIndex].updateMove((moveX, moveY))
 
         self.takePiece(piecList, square)

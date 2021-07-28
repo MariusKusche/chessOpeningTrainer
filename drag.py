@@ -29,8 +29,9 @@ def dragging(piecList, event, screen, pieceIndex):
 
 
 def moveFigure(piecList, event, screen, pieceIndex):
-    if not pieceIndex:
-        return
+    # what was this used for?
+    # if not pieceIndex:
+    # return
 
     mx, my = event.pos
     square = detectSquare(mx, my)
@@ -66,8 +67,13 @@ def moveFigure(piecList, event, screen, pieceIndex):
         piecList.sprites()[16].updateMove((moveXR, 0))
         piecList.update()
     else:
-        moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
-        moveY = newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
+        if 7 < pieceIndex < 16 or 23 < pieceIndex < 32:
+            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
+            moveY = newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1] + 10
+        else:
+            moveX = newCenter(square)[0] - piecList.sprites()[pieceIndex].rect.center[0]
+            moveY = newCenter(square)[1] - piecList.sprites()[pieceIndex].rect.center[1]
+
         piecList.sprites()[pieceIndex].updateMove((moveX, moveY))
 
         collided = pieceCollision(piecList, event)
