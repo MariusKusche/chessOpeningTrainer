@@ -165,7 +165,7 @@ class Opening:
             elif len(kindOfPiece) == 4:
                 if row != 10:
                     for i in range(2):
-                        if self.identifyMove(self.rNorB(kindOfPiece), pieceList.sprites()[kindOfPiece[i]].rect.center, square):
+                        if row == math.floor(pieceList.sprites()[kindOfPiece[i]].rect.center[0]/110):
                             return kindOfPiece[i]
                 else:
                     if self.identifyMove(self.rNorB(kindOfPiece), pieceList.sprites()[kindOfPiece[0]].rect.center, square):
@@ -188,7 +188,7 @@ class Opening:
             elif len(kindOfPiece) == 4:
                 if row != 10:
                     for i in range(2, 4):
-                        if self.identifyMove(self.rNorB(kindOfPiece), pieceList.sprites()[kindOfPiece[i]].rect.center, square):
+                        if row == math.floor(pieceList.sprites()[kindOfPiece[i]].rect.center[0]/110):
                             return kindOfPiece[i]
                 else:
                     if self.identifyMove(self.rNorB(kindOfPiece), pieceList.sprites()[kindOfPiece[2]].rect.center, square):
