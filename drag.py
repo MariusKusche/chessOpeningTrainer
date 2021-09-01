@@ -12,6 +12,7 @@ def detectFigure(piecList, event, screen):
 
     return 100, 100, 100
 
+
 # bugged
 def dragging(piecList, event, screen, pieceIndex):
     mx, my = event.pos
@@ -106,12 +107,14 @@ def pieceCollision(piecList, event):
     else:
         return 0
 
+
 # this will be changed, because if you take a figure and don't point into its rect there will be two pieces on the
 # same file
 def detectFigureIndex(piecList, event):
     for k in range(len(piecList.sprites())):
         if piecList.sprites()[k].rect.collidepoint(event.pos):
             return k
+
 
 def blitSquare(x, y, screen):
     squareLength = 110
@@ -130,6 +133,26 @@ def blitSquare(x, y, screen):
     else:
         woodSquare = pygame.image.load("gfx/white_square.png")
         screen.blit(woodSquare, (x * squareLength, y * squareLength))
+        pygame.display.flip()
+
+
+def blitRedSquare(x, y, screeni):
+    squareLength = 110
+    if x % 2 == 0 and y % 2 == 0:
+        woodSquare = pygame.image.load("gfx/white_square_red.png")
+        screeni.blit(woodSquare, (x * squareLength, y * squareLength))
+        pygame.display.flip()
+    elif x % 2 == 0 and y % 2 != 0:
+        greySquare = pygame.image.load("gfx/dark_square_red.png")
+        screeni.blit(greySquare, (x * squareLength, y * squareLength))
+        pygame.display.flip()
+    elif x % 2 != 0 and y % 2 == 0:
+        greySquare = pygame.image.load("gfx/dark_square_red.png")
+        screeni.blit(greySquare, (x * squareLength, y * squareLength))
+        pygame.display.flip()
+    else:
+        woodSquare = pygame.image.load("gfx/white_square_red.png")
+        screeni.blit(woodSquare, (x * squareLength, y * squareLength))
         pygame.display.flip()
 
 

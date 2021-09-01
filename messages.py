@@ -149,3 +149,4 @@ class Messages:
         pygame.display.flip()
 
         return height + textRect.h
+

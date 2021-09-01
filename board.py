@@ -26,9 +26,15 @@ class Board:
         squareLength = woodSquare.get_rect().size[0]
         coordsLength = coords[0].get_rect().size[0]
 
+        #boardRect = pygame.Surface((pygame.display.get_surface().get_size()[0] - squareLength * 8 + coordsLength,
+                                    #pygame.display.get_surface().get_size()[1]))
+        #boardRect.fill((105, 105, 105))
+        #screen.blit(boardRect, (squareLength * 8 + coordsLength, 0))
+        #pygame.display.flip()
+
         windRect = pygame.Surface((squareLength * 8 + coordsLength, squareLength * 8 + coordsLength))
         windRect.fill((255, 255, 255))
-
+        #windRect.fill((0, 0, 0))
         screen.blit(windRect, (0, 0))
         pygame.display.flip()
 

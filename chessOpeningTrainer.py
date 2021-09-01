@@ -28,7 +28,7 @@ def main():
     xOld = 0
     yOld = 0
 
-    ### On a general note, this needs to be more compact, I thinkt we should introduce another file/class which
+    ### On a general note, this needs to be more compact, I think we should introduce another file/class which
     ### incorporates the actions
     # main loop
     while running:
@@ -80,6 +80,7 @@ def main():
                             opn.updateIndex()
                         else:
                             mes.tryAgain(screen, hei)
+                            opn.giveHint(pieceList, screen)
                         #dragging = False
 
 
