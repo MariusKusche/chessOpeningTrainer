@@ -269,7 +269,7 @@ class Opening:
                         piecCenter = piecList.sprites()[indPiec[i]].rect.center
                         correctPiece = True
                         if column < 10:
-                            x, y = self.detectSquare(piecList.sprites()[indPiec].rect.center)
+                            x, y = self.detectSquare(piecCenter)
                             correctPiece = x == column
                         if self.identifyMove(currentMove[0], piecCenter, square) and correctPiece:
                             indPiec = indPiec[i]
@@ -279,7 +279,7 @@ class Opening:
                         piecCenter = piecList.sprites()[indPiec[i]].rect.center
                         correctPiece = True
                         if column < 10:
-                            x, y = self.detectSquare(piecList.sprites()[indPiec].rect.center)
+                            x, y = self.detectSquare(piecCenter)
                             correctPiece = x == column
                         if self.identifyMove(currentMove[0], piecCenter, square) and correctPiece:
                             indPiec = indPiec[i]
